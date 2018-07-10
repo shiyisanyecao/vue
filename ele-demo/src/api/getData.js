@@ -14,6 +14,15 @@ export const searchplace = (cityid,keyword) => new Promise((resolve,reject) => {
     console.log(url)
     http.get(url).then(res => resolve(res.data))
 })
+export const msiteFoodTypes = (geohash) => {
+    return new Promise((resolve, reject) => {
+        http.get('/v2/index_entry', {
+            geohash,
+            group_type: '1',
+            'flags[]': 'F'
+        }).then(res => resolve(res.data))
+    })
+}
 // export const cityGuess = () => fetch('https://elm.cangdu.org/v1/cities?type=guess')
 // export const hotcity = () => fetch('https://elm.cangdu.org/v1/cities?type=hot')
 // fetch两缺点 一兼容性 二api原始
